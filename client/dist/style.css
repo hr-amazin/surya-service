@@ -1,0 +1,91 @@
+html, body{
+    background-color: #24547c;
+    height: 100%;
+    width: 100%;
+    font-family: arial,sans-serif;
+    font-size: 12px;
+    line-height: 1em;
+}
+
+.header {
+    text-align: center;
+    height: 100px;
+    background-color: white;
+    position: relative;
+    /* top: 0;
+    left: 0; */
+    z-index: 198;
+   
+    margin-bottom: 2px;
+    display: block;
+    zoom: 1;
+    min-width: 1000px;
+    border: 2px solid red;
+
+}
+
+.body {
+    /* text-align: center; */
+    border: 2px solid red;
+    height: 2000px;
+    min-width : 1000px;
+    background-color: white;
+}
+
+.carousel {
+    position: relative;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+    border: 2px solid red;
+    height: 400px;
+    min-width : 1000px;
+    background-color: white;
+}
+
+.footer {
+    position: relative;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+    border: 2px solid red;
+    height: 500px;
+    width : auto;
+    background-color: white;
+}
+
+.graph {
+    /* display: inline-block; */
+    text-align: center;
+    float: left;
+    margin: 5px;
+    height: 99%;
+    width: 41%;
+    border: 2px green solid;
+}
+
+.description {
+    text-align: center;
+    margin: 5px;
+    float: left;
+    /* display: inline-block; */
+  
+    height: 99%;
+    width: 40%;
+    border: 2px green solid;
+}
+
+.action {
+    text-align: center;
+    float: right;
+    display: block;
+    margin: 5px;
+    height: 99%;
+    width: 15%;
+    border: 2px green solid;
+}
+
+img {
+  max-width: 75%;
+  max-height: 75%
+}
