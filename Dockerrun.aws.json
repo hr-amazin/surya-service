@@ -1,0 +1,13 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "Image": {
+    "Name": "suryafotedar/fecamazin-carousel",
+    "Update": "true"
+  },
+  "Ports": [
+    {
+      "ContainerPort": "4568"
+    }
+  ],
+  "Logging": "/var/log/nginx"
+}

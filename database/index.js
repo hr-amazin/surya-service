@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
-const connectionString = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@fecamazin-msyg8.mongodb.net/fecamazin?retryWrites=true/`;
+
+const mongoUser = process.env.MONGO_USER;
+const mongoPass = process.env.MONGO_PASS;
+
+const connectionString = `mongodb+srv://${mongoUser}:${mongoPass}@fecamazin-msyg8.mongodb.net/fecamazin?retryWrites=true/`;
 
 mongoose.connect(connectionString, {useNewUrlParser: true});
 

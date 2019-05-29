@@ -1,8 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import styled from 'styled-components';
+import Slider from 'react-slick';
+import Slide from './Components/slide.jsx';
 
-class App extends React.Component {
+const Wrapper = styled.div`
+  box-sizing: border-box;
+  position: relative;
+  width: 90%;
+  heigth: 280px
+  diplay: inline-block;
+  background-color: red
+  padding: auto;
+  margin: auto;
+`;
+
+class Carousel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,15 +35,30 @@ class App extends React.Component {
       });
   }
   render () {
-    return (
-      <>
-        <img src={this.state.carData[0] ? this.state.carData[0].image : `https://s3.amazonaws.com/fec.amazin/1000_1.jpg`}/>
-        <div>
-          {this.state.carData[0]? this.state.carData[0].prodName : `Placeholder`}
-        </div>
-      </>
-    )
+    const settings = {
+      dots: false,
+      infinite: false,
+      speed: 500,
+      slidesToShow: 7,
+      slidesToScroll: 7,
+      arrows: true
+    };
+    if (this.state.carData.length !== 0) {
+      return (
+        <Wrapper>
+            <Slider {...settings}>
+              {this.state.carData.map((prod, i) => (<Slide key = {i} image = {prod.image}/>))}
+            </Slider>
+        </Wrapper>
+      )
+    } else {
+      return (
+        <>
+          Placeholder
+        </>
+      )
+    }
   }
 }
 
-ReactDOM.render(<App/>, document.getElementsByClassName('carousel')[0]);
+ReactDOM.render(<Carousel/>, document.getElementsByClassName('carousel')[0]);
