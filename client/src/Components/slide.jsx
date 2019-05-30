@@ -1,15 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Image = styled.div`
-  height: ;
-  width: 75%
+const Image = styled.img`
+  height: 160px;
+  width: 160px;
+  object-fit: contain
 `;
 
 const Slide = (props) => (
-  <Image>
-    <img src = {`${props.image}`} style = {{height: 160, width: 160, objectFit: 'contain'}}/>
-  </Image>
+  <>
+    <Image src = {`${props.image}`}/>
+    
+  </>
 );
 
 export default Slide;

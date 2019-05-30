@@ -1,9 +1,0 @@
-body {
-  text-align: center;
-}
-.slick-prev::before {
-  content: url('https://s3.amazonaws.com/fec.amazin/Back.png');
-}
-.slick-next::before {
-  content: url('https://s3.amazonaws.com/fec.amazin/Forward.png');
-}

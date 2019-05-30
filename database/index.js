@@ -14,14 +14,20 @@ connect.once('open', () => {
   console.log('Connected to mongo db');
 });
 
-const getAllProducts = (callback) => {
+const getAllProducts = (uuid, callback) => {
   connect.db.collection('Carousel', (err, collection) => {
-    collection.find().sort( {_id: 1} ).toArray(function(err, data) {
+    collection.findOne({_id: uuid},function(err, product) {
       if (err) {
-        callback(err);
-        console.log("Cant query for results", err);
+        console.log("Cant query for uuid", err);
       } else {
-        callback(null, data);
+        collection.find({type: product.type}).sort({_id: 1}).toArray(function(err, data) {
+          if (err) {
+            console.log("Cant query for uuid", err);
+            callback(err);
+          } else {
+            callback(err, data);
+          }
+        });
       }
     });
   });
