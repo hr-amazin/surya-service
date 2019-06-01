@@ -20,7 +20,7 @@ const getAllProducts = (uuid, callback) => {
       if (err) {
         console.log("Cant query for uuid", err);
       } else {
-        collection.find({type: product.type}).sort({_id: 1}).toArray(function(err, data) {
+        collection.find({type: product.type, _id: {$ne: uuid}}).sort({_id: 1}).toArray(function(err, data) {
           if (err) {
             console.log("Cant query for uuid", err);
             callback(err);
