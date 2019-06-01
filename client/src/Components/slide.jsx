@@ -79,9 +79,9 @@ const Slide = (props) => {
   const price = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(props.price);
   return (
     <>
-      <SlideWrapper>
+      <SlideWrapper onClick={(event)=>{props.handleClick(event, props.prodId)}}>
         <Image src = {`${props.image}`}/>
-        <NameWrapper>{props.name}</NameWrapper>
+        <NameWrapper>{props.prodName}</NameWrapper>
         <Stars>
         <StarRatings
           rating={(Math.random() * 5)}
