@@ -28,15 +28,19 @@ const HeaderWrap = styled.h2`
   font-weight: bold;
 `;
 
+const ArrowWrap = styled.img`
+  overflow: visible;
+`;
+
 function CarNextArrow(props) {
   const { className, style, onClick } = props;
   return (
     <div
       className={className}
-      style={{ ...style, display: "block", marginLeft: 'auto'}}
+      style={{ ...style, top: "100px", display: "block", marginLeft: "10px auto", marginRight: "10px auto"}}
       onClick={onClick}
     >
-      <img src ='https://s3.amazonaws.com/fec.amazin/Forward.png'/>
+      <ArrowWrap src ='https://s3.amazonaws.com/fec.amazin/Forward.png'/>
     </div>
   );
 }
@@ -46,10 +50,10 @@ function CarPrevArrow(props) {
   return (
     <div
       className={className}
-      style={{ ...style, display: "block", marginRight: 'auto'}}
+      style={{ ...style, top: "100px", display: "block", marginRight: 'auto'}}
       onClick={onClick}
     >
-      <img src ='https://s3.amazonaws.com/fec.amazin/Back.png'/>
+      <ArrowWrap src ='https://s3.amazonaws.com/fec.amazin/Back.png'/>
     </div>
   );
 }
@@ -63,11 +67,11 @@ class Carousel extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
   componentDidMount() {
-    let uuid = 1001; //TESTING REMOVE WHEN DEPLOYING
-    // let uuid = this.props.uuid;
+    // let uuid = 1001; //TESTING REMOVE WHEN DEPLOYING
+    let uuid = this.props.uuid;
     axios
-      .get('/api/carousel', { //TESTING REMOVE WHEN DEPLOYING
-      // .get('http://carousel.us-east-1.elasticbeanstalk.com/api/carousel', {
+      // .get('/api/carousel', { //TESTING REMOVE WHEN DEPLOYING
+      .get('http://carousel.us-east-1.elasticbeanstalk.com/api/carousel', {
         params: {
           _id: uuid
         }
@@ -104,6 +108,7 @@ class Carousel extends React.Component {
   handleClick(event, newUuid) {
     event.preventDefault();
     this.props.setUuid(newUuid);
+    window.scrollTo(0, 0);
     // console.log(newUuid);
   }
 	render() {
@@ -115,7 +120,31 @@ class Carousel extends React.Component {
 			slidesToScroll: 8,
       arrows: true,
       nextArrow: <CarNextArrow />,
-      prevArrow: <CarPrevArrow />
+      prevArrow: <CarPrevArrow />,
+      initialSlide: 0,
+      responsive: [
+        {
+          breakpoint: 1500,
+          settings: {
+            slidesToShow: 7,
+            slidesToScroll: 7,
+          }
+        },
+        {
+          breakpoint: 1340,
+          settings: {
+            slidesToShow: 6,
+            slidesToScroll: 6,
+          }
+        },
+        {
+          breakpoint: 1165,
+          settings: {
+            slidesToShow: 5,
+            slidesToScroll: 5
+          }
+        }
+      ]
 		};
 		if (this.state.carData.length !== 0) {
 			return (
@@ -136,5 +165,5 @@ class Carousel extends React.Component {
 	}
 }
 
-// window.Carousel = Carousel;
-ReactDOM.render(<Carousel />, document.getElementsByClassName('carousel')[0]); //TESTING REMOVE WHEN DEPLOYING
+window.Carousel = Carousel;
+// ReactDOM.render(<Carousel />, document.getElementsByClassName('carousel')[0]); //TESTING REMOVE WHEN DEPLOYING
